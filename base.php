@@ -3,6 +3,8 @@ $dsn="mysql:host=localhost;dbname=db9903;charset=utf8";
 $pdo=new PDO($dsn,'root','');
 session_start();
 
+$Poster=new DB('poster');
+
 class DB{
   protected $table;
   protected $dsn="mysql:host=localhost;dbname=db9903;charset=utf8";
