@@ -8,7 +8,7 @@
     foreach ($movies as $key=>$movie) {
 
     ?>
-      <div style="background: white;color:black;display:flex;margin:2px 0">
+      <div style="background: white;color:black;display:flex;margin:1px 0">
         <div style="width:20%">
           <img src="img/<?= $movie['poster']; ?>" style="width:80px">
         </div>
