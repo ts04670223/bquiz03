@@ -13,6 +13,8 @@ if (!empty($_FILES['poster']['tmp_name'])) {
 
 
 
+// $_POST['ondate']=$_POST['year']."-".$_POST['month']."-".$_POST['day'];
+$_POST['ondate']=$_POST['year']."-".$_POST['month']."-".$_POST['day'];
 
 $_POST['sh']=1;
 $_POST['rank']=$Movie->q("select max(rank) from movie ")[0][0]+1;;

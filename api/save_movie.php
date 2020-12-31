@@ -10,7 +10,7 @@ if (!empty($_FILES['poster']['tmp_name'])) {
   $_POST['poster']=$_FILES['poster']['name'];
   move_uploaded_file($_FILES['poster']['tmp_name'],'../img/'.$_FILES['poster']['name']);
 }
-
+$_POST['ondate']=$_POST['year']."-".$_POST['month']."-".$_POST['day'];
 if (isset($_POST['id'])) {
   $movie=$Movie->find($_POST['id']);
   $_POST['sh']=$movie['sh'];
