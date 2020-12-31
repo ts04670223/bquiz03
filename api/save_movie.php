@@ -11,11 +11,17 @@ if (!empty($_FILES['poster']['tmp_name'])) {
   move_uploaded_file($_FILES['poster']['tmp_name'],'../img/'.$_FILES['poster']['name']);
 }
 
+if (isset($_POST['id'])) {
+  $movie=$Movie->find($_POST['id']);
+  $_POST['sh']=$movie['sh'];
+  $_POST['rank']=$movie['rank'];
+  
+}else{
+  $_POST['sh']=1;
+  $_POST['rank']=$Movie->q("select max(rank) from movie ")[0][0]+1;;
+}
 
 
-
-$_POST['sh']=1;
-$_POST['rank']=$Movie->q("select max(rank) from movie ")[0][0]+1;;
 
 $Movie->save($_POST);
 
