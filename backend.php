@@ -30,7 +30,7 @@ if (!empty($_POST) ) {
     <div id="top" class="ct" style=" background:#999 center; background-size:cover; " title="替代文字">
       <h1>ABC影城</h1>
     </div>
-    <div id="top2"> <a href="03P01.htm">首頁</a>
+    <div id="top2"> <a href="index.php">首頁</a>
       <a href="03P02.htm">線上訂票</a>
       <a href="#">會員系統</a>
       <a href="backend.php">管理系統</a>
