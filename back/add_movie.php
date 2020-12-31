@@ -4,14 +4,15 @@
     <tr>
       <td width="20%" style="vertical-align: top;text-align:right">影片資料</td>
       <td>
-  
+
         <div>片名: <input type="text" name="name"></div>
         <div>分級: <select name="level">
             <option value="普遍級">普遍級</option>
             <option value="輔導級">輔導級</option>
             <option value="保護級">保護級</option>
             <option value="限制級">限制級</option>
-          </select></div>
+          </select>
+        </div>
         <div>片長: <input type="text" name="length"></div>
         <div>上映日期:
           <select name="year" id="">
