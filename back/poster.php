@@ -1,6 +1,6 @@
-<div class="rb tab ">
+<div  class="rb tab "  style="width: 98%;">
   <h3 class="ct">預告片清單</h3>
-  <table width="100%">
+  <table  width="100%">
     <tr>
       <td class="ct" width='25%' style="background: #999;">預告片海報</td>
       <td class="ct" width='30%' style="background: #999;">預告片片名</td>
