@@ -1,5 +1,5 @@
 <h3 class="ct">新增院線片</h3>
-<form action="api/movie.php" method="post" enctype="multipart/form-data">
+<form action="api/add_movie.php" method="post" enctype="multipart/form-data">
   <table style="width: 100%;">
     <tr>
       <td width="20%" style="vertical-align: top;text-align:right">影片資料</td>
@@ -42,7 +42,11 @@
     </tr>
     <tr>
       <td style="vertical-align: top;text-align:right">劇情簡介</td>
-      <td><textarea name="intor" id="" style="width: 98%;height:60px"></textarea></td>
+      <td><textarea name="intro" id="" style="width: 98%;height:60px"></textarea></td>
     </tr>
   </table>
+  <div class="ct">
+    <input type="submit" value="新增">
+    <input type="reset" value="重置">
+  </div>
 </form>

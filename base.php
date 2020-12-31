@@ -4,6 +4,7 @@ $pdo=new PDO($dsn,'root','');
 session_start();
 
 $Poster=new DB('poster');
+$Movie=new DB('movie');
 
 class DB{
   protected $table;
