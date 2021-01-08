@@ -1,36 +1,67 @@
 <style>
-.posters{
-  width: 200px;
-  height: 260px;
-  margin: auto;
-  text-align: center;
-  position: relative;
-}
-.posters>div{
-  position: absolute;
-}
-.posters img{
-  width: 100%;
-}
+  .posters {
+    width: 200px;
+    height: 260px;
+    margin: auto;
+    text-align: center;
+    position: relative;
+  }
+
+  .posters>div {
+    position: absolute;
+  }
+
+  .posters img {
+    width: 100%;
+  }
 </style>
 <div class="half" style="vertical-align:top;">
   <h1>預告片介紹</h1>
   <div class="rb tab" style="width:95%;">
-  <div class="posters">
-  <?php
-  $posters=$Poster->all(['sh'=>1]," order by rank");
-  foreach($posters as $key=>$poster){
-    echo "<div>";
-    echo "<img src='img/{$poster['img']}'>";
-    echo "<span>{$poster['name']}</span>";
-    echo "</div>";
-  }
-  ?>
-  
-  
+    <div class="posters">
+      <?php
+      $posters = $Poster->all(['sh' => 1], " order by rank");
+      foreach ($posters as $key => $poster) {
+        echo "<div class='po' id='p{$key}' data-ani='{$poster['ani']}'>";
+        echo "<img src='img/{$poster['img']}'>";
+        echo "<span>{$poster['name']}</span>";
+        echo "</div>";
+      }
+      ?>
+    </div>
+    <div class="buttons"></div>
   </div>
-  <div class="buttons"></div>
-  </div>
+  <script>
+    $(".po").hide();
+    $("#p0").show();
+    let pos =(".po").length;
+    let t=setInterval('ani()',2500);
+
+    function ani(){
+      let now=$(".po:visible");
+      let ani=$(now).data('ani');
+      let next
+      if ($(now).next().length) {
+        next=$(now).next()
+      }else{
+        next=$("#p0")
+      }
+      switch(ani){
+        case 1:
+          $(now).fadeOut(1000)
+          $(next).fadeIn(1000)
+          break
+        case 2:
+          $(now).slideUp(1000)
+          $(next).slideDown(1000)
+          break
+        case 3:
+          $(now).hide(1000)
+          $(next).show(1000)
+          break
+      }
+    }
+  </script>
 </div>
 <div class="half">
   <h1>院線片清單</h1>
@@ -38,8 +69,8 @@
     <?php
     $today = date("Y-m-d");
     $startDate = date("Y-m-d", strtotime("-2 day", strtotime($today)));
-    
-    $count = $Movie->count(['sh' => 1]," && `ondate` between '$startDate' and '$today' ");
+
+    $count = $Movie->count(['sh' => 1], " && `ondate` between '$startDate' and '$today' ");
     $div = 4;
     $pages = ceil($count / $div);
     $now = (isset($_GET['p'])) ? $_GET['p'] : 1;
