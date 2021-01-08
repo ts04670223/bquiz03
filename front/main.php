@@ -20,6 +20,7 @@
     width: 400px;
     justify-content: center;
     align-items: center;
+    margin: auto;
   }
 .list{
   display: flex;
@@ -31,6 +32,8 @@
     height: 100px;
     text-align: center;
     flex-shrink: 0;
+    position: relative;
+
   }
 
   .btn img {
@@ -43,10 +46,10 @@
     border-bottom: 20px solid transparent;
   }
   .left{
-    border-right: 20px solid green;
+    border-right: 20px solid yellow;
   }
   .right{
-    border-left: 20px solid green;
+    border-left: 20px solid yellow;
   }
 </style>
 <div class="half" style="vertical-align:top;">
@@ -58,7 +61,7 @@
       foreach ($posters as $key => $poster) {
         echo "<div class='po' id='p{$key}' data-ani='{$poster['ani']}'>";
         echo "<img src='img/{$poster['img']}'>";
-        echo "<span>{$poster['name']}</span>";
+        echo "<span >{$poster['name']}</span>";
         echo "</div>";
       }
       ?>
@@ -81,9 +84,32 @@
     </div>
   </div>
   <script>
+    let p=0;
+    let pos = $(".po").length;
+
+    $(".arrow").on("click",function(){
+      if ($(this).hasClass('right')) {
+        console.log("aaa")
+        // 點右邊
+        if((p+1)<=(pos-4)){
+          p++;
+        }
+      }else{
+        if((p-1)>=0){
+          p--;
+        }
+      }
+      $(".btn").animate({right:p*80})
+
+        // $(".btn").hide();
+        // for(i=p;i<p+4;i++){
+        //   $('#b'+i).show()
+        // }
+        
+    })
+
     $(".po").hide();
     $("#p0").show();
-    let pos = (".po").length;
     let t = setInterval('ani()', 2500);
 
     function ani() {
