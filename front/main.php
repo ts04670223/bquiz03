@@ -110,17 +110,22 @@
 
     $(".po").hide();
     $("#p0").show();
+
     let t = setInterval('ani()', 2500);
 
-    function ani() {
+    function ani(next) {
+
       let now = $(".po:visible");
+
       let ani = $(now).data('ani');
-      let next
+
+      if(next==undefined){
       if ($(now).next().length) {
-        next = $(now).next()
+        next = $(now).next();
       } else {
-        next = $("#p0")
+        next = $("#p0");
       }
+    }
       switch (ani) {
         case 1:
           $(now).fadeOut(1000)
@@ -136,6 +141,23 @@
           break
       }
     }
+
+    $(".btn").on("click",function(){
+      let id=$(this).attr('id').replace("b","p");
+      
+      ani($("#"+id));
+    })
+
+
+
+    $(".list").hover(
+      function(){
+        clearInterval(t);
+      },
+      function(){
+        t=setInterval('ani()',2500);
+      }
+      )
   </script>
 </div>
 <div class="half">
