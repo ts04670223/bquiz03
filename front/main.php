@@ -14,6 +14,40 @@
   .posters img {
     width: 100%;
   }
+
+  .buttons {
+    display: flex;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+  }
+.list{
+  display: flex;
+  width: 320px;
+  overflow: hidden;
+}
+  .buttons .btn {
+    width: 80px;
+    height: 100px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .btn img {
+    width: 70px;
+  }
+  .arrow{
+    height: 0px;
+    width: 0px;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+  }
+  .left{
+    border-right: 20px solid green;
+  }
+  .right{
+    border-left: 20px solid green;
+  }
 </style>
 <div class="half" style="vertical-align:top;">
   <h1>預告片介紹</h1>
@@ -29,24 +63,39 @@
       }
       ?>
     </div>
-    <div class="buttons"></div>
+    <div class="buttons">
+      <div class="arrow left"></div>
+      <div class="list">
+      <?php
+
+      $posters = $Poster->all(['sh' => 1], " order by rank");
+      foreach ($posters as $key => $poster) {
+        echo "<div class='btn' id='b{$key}' data-ani='{$poster['ani']}'>";
+        echo "<img src='img/{$poster['img']}'>";
+        echo "<span>{$poster['name']}</span>";
+        echo "</div>";
+      }
+      ?>
+      </div>
+      <div class="arrow right"></div>
+    </div>
   </div>
   <script>
     $(".po").hide();
     $("#p0").show();
-    let pos =(".po").length;
-    let t=setInterval('ani()',2500);
+    let pos = (".po").length;
+    let t = setInterval('ani()', 2500);
 
-    function ani(){
-      let now=$(".po:visible");
-      let ani=$(now).data('ani');
+    function ani() {
+      let now = $(".po:visible");
+      let ani = $(now).data('ani');
       let next
       if ($(now).next().length) {
-        next=$(now).next()
-      }else{
-        next=$("#p0")
+        next = $(now).next()
+      } else {
+        next = $("#p0")
       }
-      switch(ani){
+      switch (ani) {
         case 1:
           $(now).fadeOut(1000)
           $(next).fadeIn(1000)
