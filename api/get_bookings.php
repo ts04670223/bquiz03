@@ -72,6 +72,40 @@ $session = $_GET['session']; //把今天的日期轉為秒數
   <div>您選擇的時刻是：<?= $date; ?> <?= $sess[$session]; ?></div>
   <div>您已經勾選<span id='ticket'></span>張票，最多可以購買四張票</div>
   <div class="ct">
-    <button onclick="javascript:$('.order,.booking').toggle()">上一步</button><button>訂購</button>
+    <button onclick="javascript:$('.order,.booking').toggle()">上一步</button><button onclick="finish()">訂購</button>
   </div>
 </div>
+
+<script>
+  // 建立座位陣列
+  let seats = new Array();
+  // 當checkbox被點選時進行檢查
+  $(".chk").on("click", function() {
+    // 取的座位值
+    let s=$(this).val();
+    // 判斷checkbox的狀況來決定要做新增還是刪除座位
+    if ($(this).prop('checked')) {
+      seats.push(s);
+      if (seats.length > 4) {
+        alert("最多只能購買四張票");
+        seats.splice(seats.indexOf(s),1)
+        $(this).prop('checked',false)
+      }
+      $("#ticket").text(seats.length);
+    }else{
+      seats.splice(seats.indexOf(s),1)
+      $("#ticket").text(seats.length);
+    }
+    console.log(seats)
+  })
+
+  function finish(){
+    let movie=$("#movie").val()
+    let date=$("#date").val()
+    let session=$("#session").val()
+
+    $.post("api/finish_order.php",{seats,movie,date,session},function(num){
+      location.href="index.php?do=finish&num="+num;
+    })
+  }
+</script>
