@@ -1,5 +1,5 @@
-<h4 class="ct">線上訂票</h4>
 <div class="order">
+  <h4 class="ct">線上訂票</h4>
 <form>
   <table style="width: 400px;margin:auto">
     <tr>

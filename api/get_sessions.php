@@ -11,7 +11,7 @@ $sess=[
 
 
 $movie=$Movie->find($_GET['movie']);
-$date=$_GET['date'];//把今天的日期轉為秒數
+$date=$_GET['date'];
 $now=date("G");
 
 if ($now<=13) {
