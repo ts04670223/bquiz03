@@ -72,7 +72,6 @@
   }
   ?>
 </div>
-</div>
 <script>
   function del(table, id) {
     $.post('api/del.php', {
